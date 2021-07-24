@@ -48,51 +48,55 @@ class Solution:
 
 ### Problem 1480 Running Sum of 1d Array
 #### Description
-Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
+You are given an `m x n` integer grid `accounts` where `accounts[i][j]` is the amount of money the `i​​​​​​​​​​​th`​​​​ customer has in the `j​​​​​​​​​​​th​​​​` bank. Return the wealth that the richest customer has.
 
-Return the running sum of nums.
+A customer's wealth is the amount of money they have in all their bank accounts. The richest customer is the customer that has the maximum wealth.
 
 ##### Example 1:
 ```
-Input: nums = [1,2,3,4]
-Output: [1,3,6,10]
-Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+Input: accounts = [[1,2,3],[3,2,1]]
+Output: 6
+Explanation:
+1st customer has wealth = 1 + 2 + 3 = 6
+2nd customer has wealth = 3 + 2 + 1 = 6
+Both customers are considered the richest with a wealth of 6 each, so return 6.
 ```
 ##### Example 2:
 ```
-Input: nums = [1,1,1,1,1]
-Output: [1,2,3,4,5]
-Explanation: Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].
+Input: accounts = [[1,5],[7,3],[3,5]]
+Output: 10
+Explanation: 
+1st customer has wealth = 6
+2nd customer has wealth = 10 
+3rd customer has wealth = 8
+The 2nd customer is the richest with a wealth of 10.
 ```
 ##### Example 3:
 ```
-Input: nums = [3,1,2,10,1]
-Output: [3,4,6,16,17]
+Input: accounts = [[2,8,7],[7,1,3],[1,9,5]]
+Output: 17
 ```
 
 Constraints:
 
-1 <= nums.length <= 1000
--10^6 <= nums[i] <= 10^6
 
+m == accounts.length
+n == accounts[i].length
+1 <= m, n <= 50
+1 <= accounts[i][j] <= 100
 
 #### My solution
 ```
 class Solution:
-    def runningSum(self, nums: List[int]) -> List[int]:
-        totalsum=0
-        ans=[]
-        for i in nums:
-            totalsum+=i
-            ans.append(totalsum)
-        return ans
+    def maximumWealth(self, accounts: List[List[int]]) -> int:
+        maxWealth=0
+        for subArray in accounts:
+            total=0
+            for element in subArray:
+                total+=element
+            if total > maxWealth:
+                maxWealth=total
+        return maxWealth
 ```
-- Runtime: 64 ms, faster than 12.69% of Python3 online submissions for Running Sum of 1d Array.
-- Memory Usage: 14.2 MB, less than 97.71% of Python3 online submissions for Running Sum of 1d Array.
-
-#### Solution with accumulate
-```
-class Solution:
-    def runningSum(self, nums: List[int]) -> List[int]:
-        return accumulate(nums)
-```
+- Runtime: 52 ms, faster than 79.78% of Python3 online submissions for Richest Customer Wealth.
+- Memory Usage: 14.2 MB, less than 60.90% of Python3 online submissions for Richest Customer Wealth.
