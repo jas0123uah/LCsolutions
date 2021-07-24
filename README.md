@@ -5,7 +5,7 @@ My solutions to LeetCode problems.
 ### Problem 1480 
 
 #### My solution
-<code>
+```
 class Solution:
     def runningSum(self, nums: List[int]) -> List[int]:
         totalsum=0
@@ -14,7 +14,7 @@ class Solution:
             totalsum+=i
             ans.append(totalsum)
         return ans
-    </code>
+```
 Runtime: 64 ms, faster than 12.69% of Python3 online submissions for Running Sum of 1d Array.
 Memory Usage: 14.2 MB, less than 97.71% of Python3 online submissions for Running Sum of 1d Array.
 
