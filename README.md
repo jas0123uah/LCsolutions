@@ -2,15 +2,10 @@
 My solutions to LeetCode problems.
 ## Easy Array Problems
 
-
-Given a zero-based permutation nums (0-indexed), build an array ans of the same length where ans[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
-
-A zero-based permutation nums is an array of distinct integers from 0 to nums.length - 1 (inclusive).
-
 ### Problem 1920. Build Array from Permutation
 Given a zero-based permutation `nums` (<b>0-indexed</b>), build an array `ans` of the same length where `ans[i] = nums[nums[i]]` for each `0 <= i < nums.length` and return it.
 
-A <b>>zero-based permutation</b> `nums` is an array of <b>distinct</b> integers from 0 to nums.length - 1 (<b>inclusive</b>).
+A <b>>zero-based permutation</b> `nums` is an array of <b>distinct</b> integers from `0 to nums.length - 1` (<b>inclusive</b>).
 #### Description
 ##### Example 1:
 ```
