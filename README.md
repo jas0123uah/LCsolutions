@@ -7,7 +7,10 @@ Given a zero-based permutation nums (0-indexed), build an array ans of the same 
 
 A zero-based permutation nums is an array of distinct integers from 0 to nums.length - 1 (inclusive).
 
-### Problem 1920 Build Array from Permutation
+### Problem 1920. Build Array from Permutation
+Given a zero-based permutation `nums` (<b>0-indexed</b>), build an array `ans` of the same length where `ans[i] = nums[nums[i]]` for each `0 <= i < nums.length` and return it.
+
+A <b>>zero-based permutation</b> `nums` is an array of <b>distinct</b> integers from 0 to nums.length - 1 (<b>inclusive</b>).
 #### Description
 ##### Example 1:
 ```
@@ -30,9 +33,9 @@ ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]]
 
 Constraints:
 
-1 <= nums.length <= 1000
-0 <= nums[i] < nums.length
-The elements in nums are distinct.
+- `1 <= nums.length <= 1000`
+- `0 <= nums[i] < nums.length`
+- `The elements in nums are distinct.`
  
 
 Follow-up: Can you solve it without using an extra space (i.e., O(1) memory)?
@@ -46,7 +49,7 @@ class Solution:
         return ans
 ```
 
-### Problem 1480 Running Sum of 1d Array
+### 1672. Richest Customer Wealth
 #### Description
 You are given an `m x n` integer grid `accounts` where `accounts[i][j]` is the amount of money the `i​​​​​​​​​​​th`​​​​ customer has in the `j​​​​​​​​​​​th​​​​` bank. Return the wealth that the richest customer has.
 
@@ -80,10 +83,10 @@ Output: 17
 Constraints:
 
 
-m == accounts.length
-n == accounts[i].length
-1 <= m, n <= 50
-1 <= accounts[i][j] <= 100
+- `m == accounts.length`
+- `n == accounts[i].length`
+- `1 <= m, n <= 50`
+- `1 <= accounts[i][j] <= 100`
 
 #### My solution
 ```
