@@ -1,5 +1,8 @@
 # LeetCode Solutions
 My solutions to LeetCode problems.
+
+<span>Runtime:&nbsp;<span class="data__HC-i">56 ms</span><span>, faster than <span class="data__HC-i">89.62%</span> of Python3 online submissions for Two Sum.</span></span>
+<span>Memory Usage:&nbsp;<span class="data__HC-i">15.2 MB</span><span>, less than <span class="data__HC-i">53.71%</span> of Python3 online submissions for Two Sum.</span></span>
 ## Easy Array Problems
 
 ### Problem 1920. Build Array from Permutation
