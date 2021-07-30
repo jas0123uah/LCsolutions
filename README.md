@@ -298,6 +298,7 @@ class Solution:
 	<li><code>-10<sup>6</sup> &lt;= nums1[i], nums2[i] &lt;= 10<sup>6</sup></code></li>
 </ul>
 </div>
+
 #### My solution
 ```
 1
@@ -364,10 +365,6 @@ class Solution:
             # If we are too far on the right, we need to go to left side
 32
             elif maxLeftNums1 > minRightNums2:
-33
-                end = partition_nums1 - 1
-34
-            # If we are too far on the left, we need to go to right side
 35
             else:
 36
