@@ -301,72 +301,32 @@ class Solution:
 
 #### My solution
 ```
-1
 class Solution:
-2
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-3
         if len(nums1) > len(nums2):
-4
-            nums1, nums2 = nums2, nums1
-5
-        # Lengths of two arrays
-6
+            nums1, nums2 = nums2, nums        # Lengths of two arrays
         m = len(nums1)
-7
         n = len(nums2)
-8
         # Pointers for binary search
-9
-        start = 0
-10
-        end = m
-11
+        start =         end = m
         # Binary search starts from here
-12
         while start <= end:
-13
             # Partition indices for both the arrays
-14
-            partition_nums1 = (start + end) // 2
-15
-            partition_nums2 = (m + n + 1) // 2 - partition_nums1
-16
-            # Edge cases
-17
+            partition_nums1 = (start + end) //             partition_nums2 = (m + n + 1) // 2 - partition_nums            # Edge cases
             # If there are no elements left on the left side after partition
-18
             maxLeftNums1 = -sys.maxsize if partition_nums1 == 0 else nums1[partition_nums1 - 1]
-19
             # If there are no elements left on the right side after partition
-20
             minRightNums1 = sys.maxsize if partition_nums1 == m else nums1[partition_nums1]
-21
-            # Similarly for nums2
-22
-            maxLeftNums2 = -sys.maxsize if partition_nums2 == 0 else nums2[partition_nums2 - 1]
-23
+            # Similarly for nums            maxLeftNums2 = -sys.maxsize if partition_nums2 == 0 else nums2[partition_nums2 - 1]
             minRightNums2 = sys.maxsize if partition_nums2 == n else nums2[partition_nums2]
-24
             # Check if we have found the match
-25
             if maxLeftNums1 <= minRightNums2 and maxLeftNums2 <= minRightNums1:
-26
                 # Check if the combined array is of even/odd length
-27
                 if (m + n) % 2 == 0:
-28
-                    return (max(maxLeftNums1, maxLeftNums2) + min(minRightNums1, minRightNums2)) / 2
-29
-                else:
-30
+                    return (max(maxLeftNums1, maxLeftNums2) + min(minRightNums1, minRightNums2)) /                 else:
                     return max(maxLeftNums1, maxLeftNums2)
-31
             # If we are too far on the right, we need to go to left side
-32
-            elif maxLeftNums1 > minRightNums2:
-35
+            # If we are too far on the left, we need to go to right side
             else:
-36
                 start = partition_nums1 + 1
 ```
