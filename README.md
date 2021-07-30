@@ -247,59 +247,129 @@ class Solution:
 ```
 - Runtime: 40 ms, faster than 29.87% of Python3 online submissions for Number of Good Pairs.
 - Memory Usage: 14.4 MB, less than 10.98% of Python3 online submissions for Number of Good Pairs.
-1. Two Sum<div><p>Given an array of integers <code>nums</code>&nbsp;and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.</p>
+### 4. Median of Two Sorted Arrays
+#### Description
+<div><p>Given two sorted arrays <code>nums1</code> and <code>nums2</code> of size <code>m</code> and <code>n</code> respectively, return <strong>the median</strong> of the two sorted arrays.</p>
 
-<p>You may assume that each input would have <strong><em>exactly</em> one solution</strong>, and you may not use the <em>same</em> element twice.</p>
-
-<p>You can return the answer in any order.</p>
+<p>The overall run time complexity should be <code>O(log (m+n))</code>.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
-<pre><strong>Input:</strong> nums = [2,7,11,15], target = 9
-<strong>Output:</strong> [0,1]
-<strong>Output:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].
+<pre><strong>Input:</strong> nums1 = [1,3], nums2 = [2]
+<strong>Output:</strong> 2.00000
+<strong>Explanation:</strong> merged array = [1,2,3] and median is 2.
 </pre>
 
 <p><strong>Example 2:</strong></p>
 
-<pre><strong>Input:</strong> nums = [3,2,4], target = 6
-<strong>Output:</strong> [1,2]
+<pre><strong>Input:</strong> nums1 = [1,2], nums2 = [3,4]
+<strong>Output:</strong> 2.50000
+<strong>Explanation:</strong> merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
 </pre>
 
 <p><strong>Example 3:</strong></p>
 
-<pre><strong>Input:</strong> nums = [3,3], target = 6
-<strong>Output:</strong> [0,1]
+<pre><strong>Input:</strong> nums1 = [0,0], nums2 = [0,0]
+<strong>Output:</strong> 0.00000
+</pre>
+
+<p><strong>Example 4:</strong></p>
+
+<pre><strong>Input:</strong> nums1 = [], nums2 = [1]
+<strong>Output:</strong> 1.00000
+</pre>
+
+<p><strong>Example 5:</strong></p>
+
+<pre><strong>Input:</strong> nums1 = [2], nums2 = []
+<strong>Output:</strong> 2.00000
 </pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>2 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>
-	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
-	<li><code>-10<sup>9</sup> &lt;= target &lt;= 10<sup>9</sup></code></li>
-	<li><strong>Only one valid answer exists.</strong></li>
+	<li><code>nums1.length == m</code></li>
+	<li><code>nums2.length == n</code></li>
+	<li><code>0 &lt;= m &lt;= 1000</code></li>
+	<li><code>0 &lt;= n &lt;= 1000</code></li>
+	<li><code>1 &lt;= m + n &lt;= 2000</code></li>
+	<li><code>-10<sup>6</sup> &lt;= nums1[i], nums2[i] &lt;= 10<sup>6</sup></code></li>
 </ul>
-
-<p>&nbsp;</p>
-<strong>Follow-up:&nbsp;</strong>Can you come up with an algorithm that is less than&nbsp;<code>O(n<sup>2</sup>)&nbsp;</code>time complexity?</div>#### My solution
-```1
+</div>
+#### My solution
+```
+1
 class Solution:
 2
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
 3
-        numbers_and_index={}
+        if len(nums1) > len(nums2):
 4
-        for i in range(len(nums)):
+            nums1, nums2 = nums2, nums1
 5
-            difference=target-nums[i]
+        # Lengths of two arrays
 6
-            if difference in numbers_and_index.keys():
+        m = len(nums1)
 7
-                return([numbers_and_index.get(difference), i])
+        n = len(nums2)
 8
-            else:
+        # Pointers for binary search
 9
-                numbers_and_index[nums[i]]=i```
+        start = 0
+10
+        end = m
+11
+        # Binary search starts from here
+12
+        while start <= end:
+13
+            # Partition indices for both the arrays
+14
+            partition_nums1 = (start + end) // 2
+15
+            partition_nums2 = (m + n + 1) // 2 - partition_nums1
+16
+            # Edge cases
+17
+            # If there are no elements left on the left side after partition
+18
+            maxLeftNums1 = -sys.maxsize if partition_nums1 == 0 else nums1[partition_nums1 - 1]
+19
+            # If there are no elements left on the right side after partition
+20
+            minRightNums1 = sys.maxsize if partition_nums1 == m else nums1[partition_nums1]
+21
+            # Similarly for nums2
+22
+            maxLeftNums2 = -sys.maxsize if partition_nums2 == 0 else nums2[partition_nums2 - 1]
+23
+            minRightNums2 = sys.maxsize if partition_nums2 == n else nums2[partition_nums2]
+24
+            # Check if we have found the match
+25
+            if maxLeftNums1 <= minRightNums2 and maxLeftNums2 <= minRightNums1:
+26
+                # Check if the combined array is of even/odd length
+27
+                if (m + n) % 2 == 0:
+28
+                    return (max(maxLeftNums1, maxLeftNums2) + min(minRightNums1, minRightNums2)) / 2
+29
+                else:
+30
+                    return max(maxLeftNums1, maxLeftNums2)
+31
+            # If we are too far on the right, we need to go to left side
+32
+            elif maxLeftNums1 > minRightNums2:
+33
+                end = partition_nums1 - 1
+34
+            # If we are too far on the left, we need to go to right side
+35
+            else:
+36
+                start = partition_nums1 + 1
+```
