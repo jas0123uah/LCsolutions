@@ -1,0 +1,2 @@
+
+        This repository contains my solutions to LeetCode problems. I used a Python script running Selenium to automatically upload my solutions to GitHub after I correctly answer each problem. Each folder in this repository is a tag for a problem type in LeetCode. The README file in each directory contains my solutions to the problems of those types that I have solved.
