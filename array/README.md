@@ -1,6 +1,6 @@
-## "## Easy {problem_type} Problems
-" array Problems
-## ## Medium {problem_type} Problems
+## ## Easy array Problems
+ array Problems
+## ## Medium array Problems
  array Problems
 ### 1. Two Sum
 #### Description
@@ -55,5 +55,5 @@ class Solution:
             else:
                 numbers_and_index[nums[i]]=i
 ```
-## ## Hard {problem_type} Problems
+## ## Hard array Problems
  array Problems
