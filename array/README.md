@@ -1,7 +1,4 @@
-## ## Easy array Problems
- array Problems
-## ## Medium array Problems
- array Problems
+## Easy array Problems
 ### 1. Two Sum
 #### Description
 <div><p>Given an array of integers <code>nums</code>&nbsp;and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.</p>
@@ -46,6 +43,9 @@
 #### My solution
 ```
 class Solution:
+    #1. Declare empty dict
+    #2. Iterate over the array, store each num and idx in empty dict
+    #3. Calculate the difference. If difference in empty dict return early, pushing indices ri array.
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         numbers_and_index={}
         for i in range(len(nums)):
@@ -55,5 +55,5 @@ class Solution:
             else:
                 numbers_and_index[nums[i]]=i
 ```
-## ## Hard array Problems
- array Problems
+## Medium array Problems
+## Hard array Problems
