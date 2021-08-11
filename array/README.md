@@ -176,5 +176,69 @@ class Solution:
             growing_string+=nth_character
         return growing_string
 ```
+### 1572. Matrix Diagonal Sum
+#### Description
+<div><p>Given a&nbsp;square&nbsp;matrix&nbsp;<code>mat</code>, return the sum of the matrix diagonals.</p>
+
+<p>Only include the sum of all the elements on the primary diagonal and all the elements on the secondary diagonal that are not part of the primary diagonal.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/08/14/sample_1911.png" style="width: 336px; height: 174px;">
+<pre><strong>Input:</strong> mat = [[<strong>1</strong>,2,<strong>3</strong>],
+&nbsp;             [4,<strong>5</strong>,6],
+&nbsp;             [<strong>7</strong>,8,<strong>9</strong>]]
+<strong>Output:</strong> 25
+<strong>Explanation: </strong>Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
+Notice that element mat[1][1] = 5 is counted only once.
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> mat = [[<strong>1</strong>,1,1,<strong>1</strong>],
+&nbsp;             [1,<strong>1</strong>,<strong>1</strong>,1],
+&nbsp;             [1,<strong>1</strong>,<strong>1</strong>,1],
+&nbsp;             [<strong>1</strong>,1,1,<strong>1</strong>]]
+<strong>Output:</strong> 8
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><strong>Input:</strong> mat = [[<strong>5</strong>]]
+<strong>Output:</strong> 5
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>n == mat.length == mat[i].length</code></li>
+	<li><code>1 &lt;= n &lt;= 100</code></li>
+	<li><code>1 &lt;= mat[i][j] &lt;= 100</code></li>
+</ul>
+</div>
+
+#### My solution
+```
+# UTP: Iterate over the left and right diagonals of an array calculating a total sum of subarrays/matrix. Count the middle of the matrix only once.
+# 1. At the right diagonal i and j = are == so use for i in range()
+# 2. At the left diagonal i and j increment toward each other. Icrease sum when i!=j. Continue while loop if j>=0
+#3. Return sum
+class Solution:
+    def diagonalSum(self, mat: List[List[int]]) -> int:
+        sum=0
+        #Get left diagonal
+        i=0
+        j=len(mat)-1
+        while j>=0:
+            if i !=j:
+                sum+=mat[i][j]
+            i+=1
+            j-=1
+        #Get Right diagonal
+        for i in range(0, len(mat)):
+            sum+=mat[i][i]
+        return sum
+```
 ## Medium array Problems
 ## Hard array Problems
