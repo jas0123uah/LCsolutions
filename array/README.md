@@ -388,5 +388,124 @@ class Solution:
         ans=" ".join(words_as_array)
         return ans
 ```
+### 832. Flipping an Image
+#### Description
+<div><p>Given an <code>n x n</code> binary matrix <code>image</code>, flip the image <strong>horizontally</strong>, then invert it, and return <em>the resulting image</em>.</p>
+
+<p>To flip an image horizontally means that each row of the image is reversed.</p>
+
+<ul>
+	<li>For example, flipping <code>[1,1,0]</code> horizontally results in <code>[0,1,1]</code>.</li>
+</ul>
+
+<p>To invert an image means that each <code>0</code> is replaced by <code>1</code>, and each <code>1</code> is replaced by <code>0</code>.</p>
+
+<ul>
+	<li>For example, inverting <code>[0,1,1]</code> results in <code>[1,0,0]</code>.</li>
+</ul>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> image = [[1,1,0],[1,0,1],[0,0,0]]
+<strong>Output:</strong> [[1,0,0],[0,1,0],[1,1,1]]
+<strong>Explanation:</strong> First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
+Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+<strong>Output:</strong> [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+<strong>Explanation:</strong> First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
+Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>n == image.length</code></li>
+	<li><code>n == image[i].length</code></li>
+	<li><code>1 &lt;= n &lt;= 20</code></li>
+	<li><code>images[i][j]</code> is either <code>0</code> or <code>1</code>.</li>
+</ul>
+</div>
+
+#### My solution
+```
+class Solution:
+    def returnOpp(self, subArray):
+        for index, num in enumerate(subArray):
+            flippedNum = 1 if num == 0 else 0
+            subArray[index] = flippedNum
+        return subArray
+    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
+        for idx, subArray in enumerate(image):
+            subArray.reverse()
+            subArray = self.returnOpp(subArray)
+            image[idx] = list(subArray)
+        return image
+```
+### 1051. Height Checker
+#### Description
+<div><p>A school is trying to take an annual photo of all the students. The students are asked to stand in a single file line in <strong>non-decreasing order</strong> by height. Let this ordering be represented by the integer array <code>expected</code> where <code>expected[i]</code> is the expected height of the <code>i<sup>th</sup></code> student in line.</p>
+
+<p>You are given an integer array <code>heights</code> representing the <strong>current order</strong> that the students are standing in. Each <code>heights[i]</code> is the height of the <code>i<sup>th</sup></code> student in line (<strong>0-indexed</strong>).</p>
+
+<p>Return <em>the <strong>number of indices</strong> where </em><code>heights[i] != expected[i]</code>.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> heights = [1,1,4,2,1,3]
+<strong>Output:</strong> 3
+<strong>Explanation:</strong> 
+heights:  [1,1,<u>4</u>,2,<u>1</u>,<u>3</u>]
+expected: [1,1,<u>1</u>,2,<u>3</u>,<u>4</u>]
+Indices 2, 4, and 5 do not match.
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> heights = [5,1,2,3,4]
+<strong>Output:</strong> 5
+<strong>Explanation:</strong>
+heights:  [<u>5</u>,<u>1</u>,<u>2</u>,<u>3</u>,<u>4</u>]
+expected: [<u>1</u>,<u>2</u>,<u>3</u>,<u>4</u>,<u>5</u>]
+All indices do not match.
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><strong>Input:</strong> heights = [1,2,3,4,5]
+<strong>Output:</strong> 0
+<strong>Explanation:</strong>
+heights:  [1,2,3,4,5]
+expected: [1,2,3,4,5]
+All indices match.
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= heights.length &lt;= 100</code></li>
+	<li><code>1 &lt;= heights[i] &lt;= 100</code></li>
+</ul>
+</div>
+
+#### My solution
+```
+class Solution:
+    def heightChecker(self, heights: List[int]) -> int:
+        wrongNum = 0
+        unsortedHeights = [height for height in heights]
+        heights.sort()
+        for idx, correctVal in enumerate(heights):
+            if correctVal != unsortedHeights[idx]:
+                wrongNum+=1
+        return wrongNum
+```
 ## Medium array Problems
 ## Hard array Problems
