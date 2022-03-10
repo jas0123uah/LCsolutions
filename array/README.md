@@ -507,5 +507,202 @@ class Solution:
                 wrongNum+=1
         return wrongNum
 ```
+### 2114. Maximum Number of Words Found in Sentences
+#### Description
+<div><p>A <strong>sentence</strong> is a list of <strong>words</strong> that are separated by a single space&nbsp;with no leading or trailing spaces.</p>
+
+<p>You are given an array of strings <code>sentences</code>, where each <code>sentences[i]</code> represents a single <strong>sentence</strong>.</p>
+
+<p>Return <em>the <strong>maximum number of words</strong> that appear in a single sentence</em>.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> sentences = ["alice and bob love leetcode", "i think so too", <u>"this is great thanks very much"</u>]
+<strong>Output:</strong> 6
+<strong>Explanation:</strong> 
+- The first sentence, "alice and bob love leetcode", has 5 words in total.
+- The second sentence, "i think so too", has 4 words in total.
+- The third sentence, "this is great thanks very much", has 6 words in total.
+Thus, the maximum number of words in a single sentence comes from the third sentence, which has 6 words.
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> sentences = ["please wait", <u>"continue to fight"</u>, <u>"continue to win"</u>]
+<strong>Output:</strong> 3
+<strong>Explanation:</strong> It is possible that multiple sentences contain the same number of words. 
+In this example, the second and third sentences (underlined) have the same number of words.
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= sentences.length &lt;= 100</code></li>
+	<li><code>1 &lt;= sentences[i].length &lt;= 100</code></li>
+	<li><code>sentences[i]</code> consists only of lowercase English letters and <code>' '</code> only.</li>
+	<li><code>sentences[i]</code> does not have leading or trailing spaces.</li>
+	<li>All the words in <code>sentences[i]</code> are separated by a single space.</li>
+</ul>
+</div>
+
+#### My solution
+```
+class Solution:
+    def mostWordsFound(self, sentences: List[str]) -> int:
+        maxLen=0
+        for sentence in sentences:
+            splitSentence = sentence.split(" ")
+            lengthOfSentence = len(splitSentence)
+            if lengthOfSentence > maxLen:
+                maxLen = lengthOfSentence
+        return maxLen
+```
+### 1313. Decompress Run-Length Encoded List
+#### Description
+<div><p>We are given a list <code>nums</code> of integers representing a list compressed with run-length encoding.</p>
+
+<p>Consider each adjacent pair&nbsp;of elements <code>[freq, val] = [nums[2*i], nums[2*i+1]]</code>&nbsp;(with <code>i &gt;= 0</code>).&nbsp; For each such pair, there are <code>freq</code> elements with value <code>val</code> concatenated in a sublist. Concatenate all the sublists from left to right to generate the decompressed list.</p>
+
+<p>Return the decompressed list.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> nums = [1,2,3,4]
+<strong>Output:</strong> [2,4,4,4]
+<strong>Explanation:</strong> The first pair [1,2] means we have freq = 1 and val = 2 so we generate the array [2].
+The second pair [3,4] means we have freq = 3 and val = 4 so we generate [4,4,4].
+At the end the concatenation [2] + [4,4,4] is [2,4,4,4].
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> nums = [1,1,2,3]
+<strong>Output:</strong> [1,3,3]
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>2 &lt;= nums.length &lt;= 100</code></li>
+	<li><code>nums.length % 2 == 0</code></li>
+	<li><code><font face="monospace">1 &lt;= nums[i] &lt;= 100</font></code></li>
+</ul>
+</div>
+
+#### My solution
+```
+class Solution:
+    def decompressRLElist(self, nums: List[int]) -> List[int]:
+        numInts = len(nums)
+        ans = []
+        for idx in range(0, numInts, 2):
+            frequency = nums[idx] 
+            numToAppend = nums[idx + 1]
+            for iterator in range (0, frequency):
+                ans.append(numToAppend)
+        return ans
+```
+### 2089. Find Target Indices After Sorting Array
+#### Description
+<div><p>You are given a <strong>0-indexed</strong> integer array <code>nums</code> and a target element <code>target</code>.</p>
+
+<p>A <strong>target index</strong> is an index <code>i</code> such that <code>nums[i] == target</code>.</p>
+
+<p>Return <em>a list of the target indices of</em> <code>nums</code> after<em> sorting </em><code>nums</code><em> in <strong>non-decreasing</strong> order</em>. If there are no target indices, return <em>an <strong>empty</strong> list</em>. The returned list must be sorted in <strong>increasing</strong> order.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> nums = [1,2,5,2,3], target = 2
+<strong>Output:</strong> [1,2]
+<strong>Explanation:</strong> After sorting, nums is [1,<u><strong>2</strong></u>,<u><strong>2</strong></u>,3,5].
+The indices where nums[i] == 2 are 1 and 2.
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> nums = [1,2,5,2,3], target = 3
+<strong>Output:</strong> [3]
+<strong>Explanation:</strong> After sorting, nums is [1,2,2,<u><strong>3</strong></u>,5].
+The index where nums[i] == 3 is 3.
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><strong>Input:</strong> nums = [1,2,5,2,3], target = 5
+<strong>Output:</strong> [4]
+<strong>Explanation:</strong> After sorting, nums is [1,2,2,3,<u><strong>5</strong></u>].
+The index where nums[i] == 5 is 4.
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 100</code></li>
+	<li><code>1 &lt;= nums[i], target &lt;= 100</code></li>
+</ul>
+</div>
+
+#### My solution
+```
+class Solution:
+    def targetIndices(self, nums: List[int], target: int) -> List[int]:
+        nums.sort()
+        return [idx for idx,num in enumerate(nums) if num==target]
+```
 ## Medium array Problems
+### 1769. Minimum Number of Operations to Move All Balls to Each Box
+#### Description
+<div><p>You have <code>n</code> boxes. You are given a binary string <code>boxes</code> of length <code>n</code>, where <code>boxes[i]</code> is <code>'0'</code> if the <code>i<sup>th</sup></code> box is <strong>empty</strong>, and <code>'1'</code> if it contains <strong>one</strong> ball.</p>
+
+<p>In one operation, you can move <strong>one</strong> ball from a box to an adjacent box. Box <code>i</code> is adjacent to box <code>j</code> if <code>abs(i - j) == 1</code>. Note that after doing so, there may be more than one ball in some boxes.</p>
+
+<p>Return an array <code>answer</code> of size <code>n</code>, where <code>answer[i]</code> is the <strong>minimum</strong> number of operations needed to move all the balls to the <code>i<sup>th</sup></code> box.</p>
+
+<p>Each <code>answer[i]</code> is calculated considering the <strong>initial</strong> state of the boxes.</p>
+
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+
+<pre><strong>Input:</strong> boxes = "110"
+<strong>Output:</strong> [1,1,3]
+<strong>Explanation:</strong> The answer for each box is as follows:
+1) First box: you will have to move one ball from the second box to the first box in one operation.
+2) Second box: you will have to move one ball from the first box to the second box in one operation.
+3) Third box: you will have to move one ball from the first box to the third box in two operations, and move one ball from the second box to the third box in one operation.
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> boxes = "001011"
+<strong>Output:</strong> [11,8,5,4,3,4]</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>n == boxes.length</code></li>
+	<li><code>1 &lt;= n &lt;= 2000</code></li>
+	<li><code>boxes[i]</code> is either <code>'0'</code> or <code>'1'</code>.</li>
+</ul>
+</div>
+
+#### My solution
+```
+class Solution:
+    def minOperations(self, boxes: str) -> List[int]:
+        ans = []
+        for index1, currentBall in enumerate(boxes):
+            totalNumMoves = 0
+            for index2, otherBall in enumerate(boxes):
+                if otherBall == "1":
+                    totalNumMoves +=abs(index1 - index2)
+            ans.append(totalNumMoves)
+        return ans
+```
 ## Hard array Problems
